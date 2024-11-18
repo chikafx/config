@@ -1,0 +1,91 @@
+# Django Task Management App - User Guide
+# This Django application provides a basic task management system where users can create accounts, log in, manage their tasks by adding, updating, deleting, viewing all tasks, and accessing individual task details, all utilizing Django's templating functionalities for a user-friendly interface.
+# Features:
+# User Authentication:
+# Create new accounts
+# Login to access features
+# Logout functionality
+
+# Task Management:
+# Add new tasks with title and description
+# Update existing task details
+# Delete tasks
+# View all tasks in a list
+# View individual task details
+
+
+
+# How to Use:
+# 1. Set up Django Project:
+# Create a new Django project using django-admin startproject your_project_name.
+# Create a new Django app within your project named "task_manager" using python manage.py startapp task_manager.
+# 2. Model Creation (models.py in task_manager app):
+# Define a Task model with fields like title, description, is_completed, and a foreign key to the Django user model to associate tasks with users.
+# Code
+
+from django.db import models
+
+from django.contrib.auth.models import User
+
+
+
+class Task(models.Model):
+
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+        title = models.CharField(max_length=200)
+
+        description = models.TextField(blank=True)
+
+        is_completed = models.BooleanField(default=False)
+# View Creation (views.py in task_manager app):
+# Create views for:
+# User registration
+# Login
+# Logout
+# Creating new tasks
+# Updating tasks
+# Deleting tasks
+# Listing all tasks
+# Viewing individual tasks
+
+# Template Creation (templates/task_manager directory):
+# Design templates for:
+# User registration form
+# Login form
+# Task listing page
+# Task creation form
+# Task update form
+
+
+# URL Configuration (urls.py in task_manager app):
+# Map URLs to corresponding views
+
+
+# Authentication Setup (settings.py):
+# Add `'django.contrib.auth' ` to INSTALLED_APPS in settings.py
+# Key Points:
+# User Authentication:
+# Leverage Django's built-in user authentication system to manage user logins.
+
+
+# Template Context:
+# Pass necessary data (user tasks, individual task details) from views to templates using context variables.
+
+
+# Form Validation:
+# Use Django forms to validate user input for creating and updating tasks.
+
+
+# Security:
+# Implement appropriate security measures like password hashing and session management.
+# To Run:
+# Navigate to your project directory in the terminal.
+# Run python manage.py migrate to apply database migrations.
+# Run python manage.py createsuperuser to create an admin user.
+# Start the development server with python manage.py runserver.
+# Further Improvements:
+# Task Filtering and Sorting: Allow users to filter and sort tasks based on criteria.
+# Task Due Dates: Add a due date field to the Task model.
+# Reminders: Implement features for task reminders.
+# Advanced Templating: Utilize Django template tags and filters for dynamic content display.
