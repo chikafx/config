@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,6 +57,32 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+CORS_ORIGIN_ALLOW= True
+CORS_ALLOW_ALL_ORIGIN=True
+CORS_ALLOW_CREDENTIALS=True
+
+
+CORS_ALLOW_METHODS=(
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+
+
+
+CORS_ALLOW_HEADERS=(
+    'accept',
+    'authorization',
+    'content-type',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -84,6 +111,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES= {
+#     'default':{
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':os.getenv("db_name"),
+#         'HOST':os.getenv("db_host"),
+#         'USER':os.getenv("db_user"),
+#         'PASSWORD':os.getenv("db_password"),
+#         'PORT':os.getenv("db_port")
+#     }
+# }
 AUTH_USER_MODEL= 'task.CustomUser'
 
 SIMPLE_JWT={
